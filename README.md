@@ -8,4 +8,5 @@ Things to do:<br>
 - add csfr protection<br>
 - check the security of the template (sql injection, etc)<br>
 - check if user already exists<br>
+- push in prod (heroku or similar)
 
