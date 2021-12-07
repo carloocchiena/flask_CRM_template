@@ -2,7 +2,7 @@ from datetime import date
 
 from flask import Flask, request, render_template
 
-from manage_user import insert_user, retrieve_all_users, retrieve_user
+from manage_user import insert_user, retrieve_all_users, retrieve_user, mail_check
 
 app = Flask(__name__, static_url_path='/static')
 app.config["DEBUG"] = True
@@ -27,7 +27,7 @@ def admin():
         if psw == PASSWORD:
             user_list = retrieve_all_users()
         else:
-            invalid = "[!!!] Wrong password"
+            invalid = "[!] Wrong password"
   
     return render_template("admin.html", user_list = user_list, invalid=invalid)
 
@@ -35,18 +35,18 @@ def admin():
 @app.route('/retrieve', methods = ["GET", "POST"])
 def retrieve():
     
-    user_list = ""
+    user_data = ""
     invalid = ""
     
     if request.method == "POST":
-        psw = request.form['password']
+        requested_user = str(request.form['req_username'])
         
-        if psw == PASSWORD:
-            user_list = retrieve_users()
-        else:
-            invalid = "[!!!] Wrong password"
+        try: 
+            user_data = retrieve_user(requested_user)
+        except Exception as e:
+            invalid = "[!] User not found"
   
-    return render_template("retrieve.html", user_list = user_list, invalid=invalid)
+    return render_template("retrieve.html", user_data = user_data, invalid=invalid)
 
 # render main page (to be written)
 @app.route('/', methods = ["GET", "POST"])
@@ -56,17 +56,22 @@ def input_page():
     today = date.today()
     
     if request.method == "POST":
-        user = request.form['user']
-      
-        if user != "":
+        user_name = str(request.form['name'])
+        user_mail = str(request.form['mail'])
+        user_phone = str(request.form['phone'])
+        
+        if user_name != "" and user_mail != "" and user_phone != "" and mail_check(user_mail):
             try:
-                insert_user(user)
-                return render_template("results.html", user=user, today_date=today)
+                insert_user(user_name, user_mail, user_phone)
+                return render_template("results.html", 
+                                       user_name=user_name, user_mail=user_mail, user_phone=user_phone, today_date=today)
             
             except Exception as e:
                 errors = f"[!] Errors found: {e}"
-        else:
-            errors = "You must insert a username first"
+        elif user_name == "" or user_mail == "" or user_phone == "":
+            errors = "[!] You must fill in all the fields"
+        elif not mail_check(user_mail):
+            errors = "[!] Invalid email"
 
     return render_template("main.html", today=today, errors=errors)
 

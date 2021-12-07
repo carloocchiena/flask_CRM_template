@@ -1,5 +1,7 @@
 import sqlite3
+import re
 from datetime import date
+
 
 DB = "crm.db"
 TODAY = date.today()
@@ -36,6 +38,7 @@ def insert_user(user_name, user_mail, user_phone, db=DB, entry_date=TODAY):
         print(f"[!] DB connection aborted! Error:{e}")
         return f"[!] DB connection aborted! Error:{e}"
     
+# extract all users from the users table
 def retrieve_all_users(db=DB):
     """Retrieve all users from the users table
     :param db:
@@ -64,6 +67,7 @@ def retrieve_all_users(db=DB):
         print(f"[!] DB connection aborted! Error:{e}")
         return f"[!] DB connection aborted! Error:{e}"
     
+# extract a specific user from the users table
 def retrieve_user(user_name, db=DB):
     """Retrieve one users from the users table
     :param user_name:
@@ -94,8 +98,20 @@ def retrieve_user(user_name, db=DB):
     except ConnectionError as e:
         print(f"[!] DB connection aborted! Error:{e}")
         return f"[!] DB connection aborted! Error:{e}"
+    
+# check formal correctness of user email
+def mail_check(email):
+    """Check if the email has a valid format
+    """
+    regex = "^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$"
+    
+    if (re.search(regex, email)):
+        return True
+    else:
+        return False
 
+# call the functions
 if __name__ == '__main__':
     insert_user("dummy_user", "dummy@dummy.com", "1234567890")
     retrieve_all_users()
-    retrieve_user("dummy_user")
+    retrieve_user("carlo")
