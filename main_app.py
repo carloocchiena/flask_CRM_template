@@ -1,6 +1,8 @@
+import os
 from datetime import date
 
 from flask import Flask, request, render_template
+from flask_wtf.csrf import CSRFProtect
 
 from manage_user import insert_user, retrieve_all_users, retrieve_user, mail_check
 
@@ -8,6 +10,12 @@ app = Flask(__name__, static_url_path='/static')
 app.config["DEBUG"] = True
 
 PASSWORD = "admin"
+
+# CSRF protection routine
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
+csrf = CSRFProtect(app)
+csrf.init_app(app)
 
 # render error page 404
 @app.errorhandler(404)

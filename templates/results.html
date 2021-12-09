@@ -16,6 +16,7 @@
     <div class = "container">
         <h1 name="top"> User Updated!</h1>
         <form action="/">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <input type="submit" value="Insert another one"/>
         </form><br>
         

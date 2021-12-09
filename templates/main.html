@@ -15,12 +15,13 @@
 <body>
 	<div class="container">
 		<h1>Python CRM Template</h1>
-		<h3>Track username, email and phone number of your customers and retrieve them</h3>
+		<h4>Track username, email and phone number of your customers and retrieve them</h4>
 		<p>Enter user data:</p>
 		<form method="post" action=".">
 			<p><input name="name" placeholder="Bill Gates"/></p>
 			<p><input name="mail" placeholder="bill@example.com"/></p>
 			<p><input name="phone" placeholder="+55 123 456 789"/></p>
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 			<p>Today Date: {{ today }}</p>
 			<p><input type="submit" value="Insert" /></p>
 		</form>

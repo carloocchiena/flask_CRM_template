@@ -17,6 +17,7 @@
         <h1 name="top">Insert User Name:</h1>
         <form method="post">
             <p><input name="req_username" placeholder="username"/></p>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <input type="submit" value="Search user data"/>
         </form><br>
         

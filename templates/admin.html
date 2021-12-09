@@ -18,6 +18,7 @@
 		<p>Enter admin password:</p>
 		<form method="post">
 			<p><input name="password" placeholder="*******"/></p>
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 			<p><input type="submit" value="Insert" /></p>
 		</form>
 
