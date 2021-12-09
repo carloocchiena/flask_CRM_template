@@ -5,4 +5,5 @@ currently WIP.
 
 Things to do:<br>
 - check if user already exists<br>
+- push in prod (heroku or similar)
 
