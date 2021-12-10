@@ -23,10 +23,10 @@
 		</p>
 		<h6>Enter user data:</h6>
 		<form method="post" action=".">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 			<p><input name="name" placeholder="Bill Gates"/></p>
 			<p><input name="mail" placeholder="bill@example.com"/></p>
 			<p><input name="phone" placeholder="+55 123 456 789"/></p>
-			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 			<p>Today Date: {{ today }}</p>
 			<p><input type="submit" value="Insert" /></p>
 		</form>
