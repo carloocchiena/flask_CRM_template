@@ -2,7 +2,7 @@ import os
 from datetime import date
 
 from flask import Flask, request, render_template
-from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect, CSRFError
 
 from manage_user import insert_user, retrieve_all_users, retrieve_user, mail_check
 
@@ -16,6 +16,11 @@ SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 csrf = CSRFProtect(app)
 csrf.init_app(app)
+
+# render  CSRF error page 400
+@app.errorhandler(CSRFError)
+def handle_csrf_error(e):
+    return render_template('csrf_error.html', reason=e.description), 400
 
 # render error page 404
 @app.errorhandler(404)
