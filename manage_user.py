@@ -89,9 +89,15 @@ def retrieve_user(user_name, db=DB):
         cursor.execute(sql, (user_name,))
         user = cursor.fetchall()
         db_connection.commit()
-        print("[*] User Retrieved!")
         db_connection.close()
         
+        if user != []:
+            print("[*] User Retrieved!")
+            user = user
+        else:
+            print(f"[!] User {user_name} not found")
+            user = [f"[!] User {user_name} not found"]
+    
         print(user)
         return user
     
