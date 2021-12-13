@@ -12,7 +12,8 @@ app.config["DEBUG"] = False
 PASSWORD = "admin"
 
 # CSRF protection routine
-SECRET_KEY = os.urandom(32)
+# SECRET_KEY = os.urandom(32) #security downgrade to avoid crash on heroku
+SECRET_KEY = "word_of_widsom"
 app.config['SECRET_KEY'] = SECRET_KEY
 csrf = CSRFProtect(app)
 csrf.init_app(app)
