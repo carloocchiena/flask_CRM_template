@@ -7,7 +7,7 @@ from flask_wtf.csrf import CSRFProtect, CSRFError
 from manage_user import insert_user, retrieve_all_users, retrieve_user, mail_check
 
 app = Flask(__name__, static_url_path='/static')
-app.config["DEBUG"] = True
+app.config["DEBUG"] = False
 
 PASSWORD = "admin"
 
