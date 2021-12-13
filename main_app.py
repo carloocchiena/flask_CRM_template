@@ -12,8 +12,8 @@ app.config["DEBUG"] = False
 PASSWORD = "admin"
 
 # CSRF protection routine
-# SECRET_KEY = os.urandom(32) #security downgrade to avoid crash on heroku
-SECRET_KEY = "word_of_widsom"
+# SECRET_KEY = os.urandom(32) 
+SECRET_KEY = "word_of_widsom" # security downgrade to avoid crash on heroku
 app.config['SECRET_KEY'] = SECRET_KEY
 csrf = CSRFProtect(app)
 csrf.init_app(app)
@@ -90,4 +90,4 @@ def input_page():
     return render_template("main.html", today=today, errors=errors)
 
 if __name__ == '__main__':
-    app.run(use_reloader=True)
+    app.run(use_reloader=False)
