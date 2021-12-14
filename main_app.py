@@ -12,7 +12,7 @@ app.config["DEBUG"] = False
 PASSWORD = "admin"
 
 # CSRF protection routine
-# SECRET_KEY = os.urandom(32)
+# SECRET_KEY = os.urandom(32) # security downgrade to avoid crash on heroku
 SECRET_KEY = "word_of_widsom" # security downgrade to avoid crash on heroku
 app.config['SECRET_KEY'] = SECRET_KEY
 csrf = CSRFProtect(app)
@@ -28,7 +28,7 @@ def handle_csrf_error(e):
 def page_not_found(e):
     return render_template("404.html"), 404
 
-# render admin page (sorta ok)
+# render admin page
 @app.route('/admin', methods = ["GET", "POST"])
 def admin():
     
@@ -45,7 +45,7 @@ def admin():
   
     return render_template("admin.html", user_list = user_list, invalid=invalid)
 
-# render query page (to be written)
+# render query page
 @app.route('/retrieve', methods = ["GET", "POST"])
 def retrieve():
     
@@ -62,7 +62,7 @@ def retrieve():
   
     return render_template("retrieve.html", user_data = user_data, invalid=invalid)
 
-# render main page (to be written)
+# render main page
 @app.route('/', methods = ["GET", "POST"])
 def input_page():
     

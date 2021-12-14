@@ -21,7 +21,17 @@
             <input type="submit" value="Search user data"/>
         </form><br>
         
-        <p>{{ user_data[0] }}  {{ user_data[1] }}  {{ user_data[2] }} {{ user_data[3] }} {{ user_data[4] }}</p>
+        <!-- <p>{{ user_data[0] }}  {{ user_data[1] }}  {{ user_data[2] }} {{ user_data[3] }} {{ user_data[4] }}</p> -->
+        {% for user in user_data %}
+			<p>
+                <strong>User ID: </strong>{{ user[0] }}<br>  
+                <strong>Entry date: </strong>{{ user[1] }}<br> 
+                <strong>User name: </strong>{{ user[2] }}<br> 
+                <strong>User email: </strong>{{ user[3] }}<br> 
+                <strong>User phone: </strong>{{ user[4] }}<br>
+            </p>
+		{% endfor %}
+        
         <p>{{ invalid }}</p>
 
         <a href="/">Back to Home</a><br>

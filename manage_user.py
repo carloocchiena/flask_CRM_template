@@ -93,10 +93,9 @@ def retrieve_user(user_name, db=DB):
         
         if user != []:
             print("[*] User Retrieved!")
-            user = user
         else:
             print(f"[!] User {user_name} not found")
-            user = [f"[!] User {user_name} not found"]
+            user = [[(f"[!] User {user_name} not found")]]
     
         print(user)
         return user

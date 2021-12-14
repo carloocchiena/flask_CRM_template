@@ -17,7 +17,7 @@
 		<h3 id="top">Retrieve all users</h3>
 		<p>Enter admin password:</p>
 		<form method="post">
-			<p><input name="password" placeholder="*******"/></p>
+			<p><input name="password" type="password" placeholder="*******"/></p>
 			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 			<p><input type="submit" value="Proceed" /></p>
 		</form>
