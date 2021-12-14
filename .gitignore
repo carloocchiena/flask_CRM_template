@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # custom
-requirements copy.txt
-crm.db
+.requirements copy.txt
+.crm.db
