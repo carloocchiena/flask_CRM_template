@@ -23,7 +23,13 @@
 		</form>
 
 		{% for user in user_list %}
-			<p>{{ user[0] }},  {{ user[1] }},  {{ user[2] }}, {{ user[3] }}, {{ user[4] }}</p>
+		<p>
+			<strong>User ID: </strong>{{ user[0] }}<br>  
+			<strong>Entry date: </strong>{{ user[1] }}<br> 
+			<strong>User name: </strong>{{ user[2] }}<br> 
+			<strong>User email: </strong>{{ user[3] }}<br> 
+			<strong>User phone: </strong>{{ user[4] }}<br>
+		</p>
 		{% endfor %}
 
 		<p>{{ invalid }}</p>
