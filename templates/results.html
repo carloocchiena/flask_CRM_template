@@ -14,13 +14,18 @@
 
 <body>
     <div class = "container">
-        <h1 name="top"> User Updated!</h1>
+        <h1 name="top"> User Updated!</h1><br>
         <form action="/">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
             <input type="submit" value="Insert another one"/>
         </form><br>
         
-        <p>{{ today_date }}:User Name: {{ user_name }}, User Mail: {{ user_mail }}, User Phone: {{ user_phone }}</p>
+        <p>
+            {{ today_date }}<br>
+            <strong>Username:</strong> {{ user_name }}<br> 
+            <strong>Email Address:</strong> {{ user_mail }}<br> 
+            <strong>Phone Number:</strong> {{ user_phone }}<br>
+        </p>
         
     </div>
 
